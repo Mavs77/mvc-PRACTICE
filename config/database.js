@@ -15,4 +15,5 @@ const connectDB = async () => {
   }
 }
 
+//we are exporting the function 'connectDB' which connects us to our DB with mongoose
 module.exports = connectDB
