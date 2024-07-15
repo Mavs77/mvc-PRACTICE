@@ -8,3 +8,7 @@ h1{
 .not{
     text-decoration: underline;
 }
+.del{
+    font-weight: 800;
+    color: red;
+}
