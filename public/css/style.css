@@ -12,3 +12,7 @@ h1{
     font-weight: 800;
     color: red;
 }
+
+.del:hover {
+    cursor: pointer;
+}
