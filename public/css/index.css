@@ -1,0 +1,11 @@
+button > a {
+    font-size: 2rem;
+    font-weight: bold;
+    color: yellow;
+}
+
+button {
+    border: 10px solid black;
+    padding: 15px;
+    background-color: rgb(48, 48, 195);
+}
