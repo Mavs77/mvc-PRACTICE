@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+//used to establish connection to the database
 const connectDB = require('./config/database')
 const homeRoutes = require('./routes/home')
 const todoRoutes = require('./routes/todos')
