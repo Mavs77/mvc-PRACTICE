@@ -14,6 +14,7 @@ app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
+//this section sets up the routes for the application. The first line specifies taht requests to the root URL ('/') should be handled by the 'homeRoutes' module. The second line specifies that requests to the '/todos' URL should be handled by the 'todoRoutes' module.
 app.use('/', homeRoutes)
 app.use('/todos', todoRoutes)
  
