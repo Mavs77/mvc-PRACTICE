@@ -18,7 +18,8 @@
     "mongodb": "^5.9.2",
     "mongoose": "^5.13.22",
     "morgan": "^1.10.0",
-    "passport": "^0.7.0"
+    "passport": "^0.7.0",
+    "validator": "^13.12.0"
   },
   "description": "",
   "devDependencies": {
