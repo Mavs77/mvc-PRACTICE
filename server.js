@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const passport = require('passport')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
+const DB_STRING = process.env.DB_STRING
 const flash = require('express-flash')
 const logger = require('morgan')
 //used to establish connection to the database
