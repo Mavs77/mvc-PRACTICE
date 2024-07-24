@@ -3,7 +3,7 @@ const validator = require('validator')
 const User = require('../models/User')
 
 //renders the login page if the user is not already authenticated. If the user is authenticated, they are redirected to the '/todos' page. 
- exports.getLogin = (req, res) => {
+exports.getLogin = (req, res) => {
     if (req.user) {
       return res.redirect('/todos')
     }
@@ -13,7 +13,7 @@ const User = require('../models/User')
   }
   
   //you'll want to export modules so that you can use them in other parts of your application. This block handles login form submission. Validates the input, autenticates the user using 'passport', and handles any errors. If authentication is successful, the user is logged in and redirected to the '/todos' page. 
-  exports.postLogin = (req, res, next) => {
+exports.postLogin = (req, res, next) => {
     const validationErrors = []
     if (!validator.isEmail(req.body.email)) validationErrors.push({ msg: 'Please enter a valid email address.' })
     if (validator.isEmpty(req.body.password)) validationErrors.push({ msg: 'Password cannot be blank.' })
@@ -39,19 +39,35 @@ const User = require('../models/User')
   }
   
   //logs the user out, destroys the session, and redirects to the home page. Also logs a message to the console and handles potential errors during session destruction
-  exports.logout = (req, res) => {
-    req.logout(() => {
-      console.log('User has logged out.')
-    })
+// exports.logout = (req, res) => {
+//     req.logout(() => {
+//       console.log('User has logged out.')
+//     })
+//     req.session.destroy((err) => {
+//       if (err) console.log('Error : Failed to destroy the session during logout.', err)
+//       req.user = null
+//       res.redirect('/')
+//     })
+//   }
+
+ exports.logout = (req, res, next) => {
+  req.logout((err) => {
+    if (err) {
+      return next(errr); 
+    }
     req.session.destroy((err) => {
-      if (err) console.log('Error : Failed to destroy the session during logout.', err)
-      req.user = null
-      res.redirect('/')
+      if (err) {
+        console.log('Error: Failed to destroy the session during logout.', err); 
+        return next(err); 
+      }
+      req.user = null; 
+      res.redirect('/'); 
     })
-  }
+  } )
+ } 
   
   //renders the signup page if the user is not already authenticated. If the user is authenticated, they are redirected to the '/todos' page. 
-  exports.getSignup = (req, res) => {
+exports.getSignup = (req, res) => {
     if (req.user) {
       return res.redirect('/todos')
     }
@@ -61,7 +77,7 @@ const User = require('../models/User')
   }
   
   //handles signup form submission. Validates the input, checks for existing users, creates a new user, and logs them in if successful. If there are validation errors or the user already exists, it redirects back to the singup page with error messages
-  exports.postSignup = (req, res, next) => {
+exports.postSignup = (req, res, next) => {
     const validationErrors = []
     if (!validator.isEmail(req.body.email)) validationErrors.push({ msg: 'Please enter a valid email address.' })
     if (!validator.isLength(req.body.password, { min: 8 })) validationErrors.push({ msg: 'Password must be at least 8 characters long' })

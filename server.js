@@ -1,10 +1,11 @@
 require('dotenv').config({path: './config/.env'}); //Ensure this is at the top 
 
 const express = require('express')
+const app = express()
 const mongoose = require('mongoose')
 const passport = require('passport')
-const session = require('express-session')
-const MongoStore = require('connect-mongo')
+const session = require('express-session') //manage user sessions in an express.js application 
+const MongoStore = require('connect-mongo') //store session data in a mongoDB database
 const flash = require('express-flash')
 const logger = require('morgan')
 const connectDB = require('./config/database')
@@ -13,7 +14,6 @@ const todoRoutes = require('./routes/todos')
 
 const DB_STRING = process.env.DB_STRING
 
-const app = express()
 
 connectDB()
 
