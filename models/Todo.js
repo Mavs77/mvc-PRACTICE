@@ -8,7 +8,13 @@ const TodoSchema = new mongoose.Schema({
   completed: {
     type: Boolean,
     required: true,
+  }, 
+  userId: {
+    type: String,
+    required: true
   }
 })
 
 module.exports = mongoose.model('Todo', TodoSchema)
+
+//Each schema maps to a MongoDB collection and defines the shapes of the documents within that collection. 
