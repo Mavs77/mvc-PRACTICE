@@ -33,11 +33,7 @@ app.use(
         resave: false, 
         saveUninitialized: false, 
         store: MongoStore.create({ 
-            mongoUrl: DB_STRING,
-            mongoOptions: {
-                useNewUrlParser: true,
-                useUnifiedTopology: true,
-            }
+            mongoUrl: DB_STRING
         })
     })
 )
